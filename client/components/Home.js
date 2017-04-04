@@ -15,7 +15,7 @@ class Home extends Component {
             <input id="username" type="text" placeholder="Username"></input>
               <input id="password" type="password" placeholder="Password"></input>
                 <input id="phoneNumber" type="phoneNumber" placeholder="Phone Number"></input>
-                  <button onClick={() => this.props.loginClick('register')}>Register</button>
+                  <button onClick={() => this.props.registerClick('register')}>Register</button>
               </form>
             </div>
           </div>
