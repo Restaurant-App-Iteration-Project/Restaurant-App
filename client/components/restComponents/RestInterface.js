@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const RestInterface = (props) => {
-  return (
-    // POST
-    // GET
-  );
-};
+class RestInterface extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
 
 export default RestInterface;
