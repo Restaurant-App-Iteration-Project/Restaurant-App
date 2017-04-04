@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const userController = {};
 
 userController.createUser = (req, res, next) => {
+  console.log(req.body)
   User.create({
     username: req.body.username,
+    password: req.body.password,
     phoneNumber: req.body.phoneNumber,
   }, (err, result) => {
     if (err) res.status(400).json('Error')

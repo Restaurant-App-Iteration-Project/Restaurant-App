@@ -20,14 +20,16 @@ class App extends Component {
   loginClick(type) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
     const data = JSON.stringify({
       username,
       password,
+      phoneNumber,
     });
     //console.log('credentials: ', data);
-    console.log(type);
     var xhr = new XMLHttpRequest();
-    if (type === 'login') xhr.open('POST', '/login');
+    // if (type === 'login') xhr.open('POST', '/login');
+    if (type === 'register') xhr.open('POST', '/register');    
     
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(data);
@@ -36,23 +38,23 @@ class App extends Component {
       var DONE = 4; // readyState 4 means the request is done.
       var OK = 200; // status 200 is a successful return.
 
-      if (xhr.readyState === DONE) {
-        if (xhr.status === OK) {
+      if (xhr.readyState == DONE) {
+        console.log('Ready State', xhr.readyState)
+        if (xhr.status == OK) {
           console.log(username);
           this.setState({
             username: username,
           });
-        }
-          console.log(xhr.responseText); // 'This is the returned text.'
-        } else {
+        }  else {
           console.log('Error: ' + xhr.status); // An error occurred during the request.
         }
-      }.bind(this);
+      }
+    }.bind(this);
     };
 
   render() {
     return (
-      <Home />
+      <Home loginClick={this.loginClick.bind(this)}/>
     );
   }
 
