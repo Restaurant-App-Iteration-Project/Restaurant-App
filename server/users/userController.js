@@ -16,7 +16,7 @@ userController.createUser = (req, res, next) => {
   });
 };
 
-userController.findAll = (req, res, next) => {
+userController.getUserList = (req, res, next) => {
   Users.find({}, (err, result) => {
     console.log(users);
     if (err) res.status(400).json('Error')
