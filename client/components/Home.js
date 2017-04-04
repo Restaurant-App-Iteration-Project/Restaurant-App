@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -9,17 +8,17 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="login-page">
+      <div className="container">
         <div className="form" id="login">
           <form className="login-form">
             <input id="username" type="text" placeholder="Username"></input>
-              <input id="password" type="password" placeholder="Password"></input>
-                <input id="phoneNumber" type="phoneNumber" placeholder="Phone Number"></input>
-                  <button onClick={() => this.props.registerClick('register')}>Register</button>
-              </form>
-            </div>
-          </div>
-            );
+            <input id="password" type="password" placeholder="Password"></input>
+            <button onClick={() => this.props.handleClick('login')}>Log in</button>
+          </form>
+          <p className="message">Not registered? <a onClick={() => this.props.handleClick('register-page')} href="#">Create an account</a></p>
+        </div>
+      </div>
+    );
   }
 
 }
