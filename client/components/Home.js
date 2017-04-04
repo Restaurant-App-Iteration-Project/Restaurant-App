@@ -9,15 +9,17 @@ class Home extends Component {
 
   render() {
     return (
-        <div id="login">
-          <form>
-            <input id="username" type="text" placeholder="Username" />
-            <input id="password" type="password" placeholder="Password" />
-            <input id="phoneNumber" type="phoneNumber" placeholder="Phone Number" />
-          </form>
-          <button onClick={() => this.props.loginClick('register')}>Register</button>
-        </div>
-    );
+      <div className="login-page">
+        <div className="form" id="login">
+          <form className="login-form">
+            <input id="username" type="text" placeholder="Username"></input>
+              <input id="password" type="password" placeholder="Password"></input>
+                <input id="phoneNumber" type="phoneNumber" placeholder="Phone Number"></input>
+                  <button onClick={() => this.props.loginClick('register')}>Register</button>
+              </form>
+            </div>
+          </div>
+            );
   }
 
 }
