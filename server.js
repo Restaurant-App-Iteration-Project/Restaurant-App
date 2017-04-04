@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const userController = require('./users/userController');
-const restController = require('./restaurants/restController');
+const userController = require('./server/users/userController');
+const restController = require('./server/restaurants/restController');
 const path = require('path');
 const cors = require('cors');
 
@@ -30,6 +30,7 @@ app.post('/register', userController.createUser, (req, res) => {
 app.get('/restaurantList', restController.findAll);
 
 app.post('/restaurant', restController.createRest);
+app.post('/removeRest', restController.removeRest);
 
 app.post('/removeUser', userController.removeUser);
 
