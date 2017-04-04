@@ -9,18 +9,14 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
         <div id="login">
           <form>
             <input id="username" type="text" placeholder="Username" />
             <input id="password" type="password" placeholder="Password" />
+            <input id="phoneNumber" type="phoneNumber" placeholder="Phone Number" />
           </form>
-          <button onClick={() => props.loginClick('register')}>Register</button>
+          <button onClick={() => this.props.loginClick('register')}>Register</button>
         </div>
-      
-        // FB OAUTH
-
-      </div>
     );
   }
 

@@ -23,7 +23,9 @@ app.get('/', (req, res) => {
 
 app.get('/userList', userController.findAll);
 
-app.post('/user', userController.createUser);
+app.post('/register', userController.createUser, (req, res) => {
+  console.log('SUCCESS');
+});
 
 app.get('/restaurantList', restController.findAll);
 
