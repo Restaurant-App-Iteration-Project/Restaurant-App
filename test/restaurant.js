@@ -3,9 +3,6 @@ const restaurant = require('../server.js');
 const request = require('supertest');
 const mongoose = require('mongoose');
 
-mongoose.createConnection('mongodb://codesmith13:1Lovetesting@ds149800.mlab.com:49800/codesmith13');
-mongoose.connection.db.dropDatabase();
-
 const HOST = 'http://localhost:3000';
 
 describe('Requests to /restaurantList', () => {
@@ -52,7 +49,7 @@ describe('Requests to /restaurantList', () => {
             expect(res.body).to.include.keys('waitTime');
             expect(res.status).to.be.ok(200);
             done();
-          })
+          });
       });
       it('response with Error, 400 status, and application/json content type', done => {
         request(HOST)

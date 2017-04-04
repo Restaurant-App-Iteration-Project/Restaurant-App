@@ -31,4 +31,9 @@ restController.findAll = (req, res, next) => {
 	});
 };
 
+restController.removeRest = (req, res, next) => {
+  Restaurant.find({ name: req.body.name }).remove().exec();
+  res.status(200).json('Successfully removed restaurant');
+};
+
 module.exports = restController;
