@@ -4,12 +4,8 @@ import ReactDOM from "react-dom";
 
 import { render } from 'react-dom';
 import App from './components/App';
-import Guest from './components/Guest';
-import homeLayout from './components/homeLayout';
-import restLogin from './components/restLogin';
-import WaitPage from './components/WaitPage';
-import GuestOptions from './components/GuestOptions';
-import TablePage from './components/TablePage';
+import restSetup from './components/restComponents/restSetup';
+import userSetup from './components/userComponents/userSetup';
 
 const app = document.getElementById('root');
 // var hashHistory = ReactRouter.hashHistory;
