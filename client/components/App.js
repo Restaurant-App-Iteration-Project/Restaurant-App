@@ -13,10 +13,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.loginClick = this.loginClick.bind(this);
+    this.registerClick = this.registerClick.bind(this);
   }
 
-  loginClick(type) {
+  registerClick(type) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const phoneNumber = document.getElementById('phoneNumber').value;
@@ -54,7 +54,7 @@ class App extends Component {
 
   render() {
     return (
-      <Home loginClick={this.loginClick}/>
+      <Home registerClick={this.registerClick}/>
     );
   }
 
