@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const userController = require('./users/userController');
-const restController = require('./restaurants/restController');
+const userController = require('./server/users/userController');
+const restController = require('./server/restaurants/restController');
 const path = require('path');
 const cors = require('cors');
 
@@ -13,23 +13,22 @@ mongoose.connection.once('open', () => {
 });
 
 app.use(cors());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/client/index.html');
 });
 
-app.get('/userList', userController.findAll);
-
-app.post('/user', userController.createUser);
-
-app.get('/restaurantList', restController.findAll);
-
-app.post('/restaurant', restController.createRest);
-
+app.get('/userList', userController.getUserList);
+app.post('/register', userController.createUser);
 app.post('/removeUser', userController.removeUser);
+
+app.get('/restaurantList', restController.getRestList);
+app.get('/restaurant', restController.getRest);
+app.post('/restaurant', restController.createRest);
+app.post('/removeRest', restController.removeRest);
+app.put('/restaurant', restController.updateTime);
 
 app.use(express.static(path.join(__dirname, './')));
 
