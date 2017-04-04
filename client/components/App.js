@@ -3,7 +3,7 @@ import { Router, Route } from "react-router";
 import fetch from 'isomorphic-fetch';
 import Home from './Home';
 
-getInitialState() => {
+function getInitialState() {
   return {
     username: '',
     favorites: [],
@@ -52,10 +52,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Route path='/' component={Home} />
-        <Route path='/restaurants' component={RestSetup} />
-      </Router>
+      <Home />
     );
   }
 
