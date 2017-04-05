@@ -1,16 +1,15 @@
 import React from 'react';
-import List from './List';
+// import List from './List';
 
 const UserInterface = (props) => {
   return (
     <div>
-      <form action="/server.js">
-        <input type="text" name="search" value="Search Restaurants" />
+      <p>Hi, {props.username}</p>
+      <form>
+        <input type="text" name="search" />
       </form>
-      // if search results, then render List
       <div className="lists">
-        <List type={props.searchResults} />
-        <List type={props.favorites} />
+        <p>Hi, {props.username}</p>
       </div>
     </div>
   );

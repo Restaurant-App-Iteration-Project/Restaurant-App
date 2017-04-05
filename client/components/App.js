@@ -4,19 +4,15 @@ import Register from './Register';
 import RegisterRestaurant from './restComponents/RegisterRestaurant';
 import UserInterface from './userComponents/UserInterface';
 
-function getInitialState() {
-  return {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
     username: '',
     restName: '',
     lastUpdated: null,
     view: 'home',
   };
-}
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = getInitialState();
     this.handleClick = this.handleClick.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -25,7 +21,6 @@ class App extends Component {
     const xhr = new XMLHttpRequest();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    console.log(username);
     const data = JSON.stringify({
       username,
       password,
@@ -35,8 +30,8 @@ class App extends Component {
     xhr.send(data);
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && (xhr.status === 0 || xhr.status === 200)) {
-        console.log('I WANT TO SET THIS STATE');
         this.setState({
+          username: username,
           view: 'userInterface',
         });
       } else {
@@ -112,15 +107,16 @@ class App extends Component {
     }
   
   render() {
+    console.log(this.state);
     let page;
     if (this.state.view === 'home') {
-      page = <Home handleLogin={this.handleLogin} handleClick={this.handleClick} />
+      page = <Home handleLogin={this.handleLogin} handleClick={this.handleClick} />;
     } else if (this.state.view === 'register') {
-      page = <Register handleClick={this.handleClick} />
-    } else if (this.state.view === 'register-rest') {
-      page = <RegisterRestaurant handleClick={this.handleClick} />
+      page = <Register handleClick={this.handleClick} />;
     } else if (this.state.view === 'userInterface') {
-      page = <UserInterface handleClick={this.handleClick} />
+      page = <UserInterface username={this.state.username} />;
+    } else if (this.state.view === 'register-rest') {
+      page = <RegisterRestaurant handleClick={this.handleClick} />;
     }
     return (
       <div>

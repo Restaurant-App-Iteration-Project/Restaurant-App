@@ -8,7 +8,7 @@ const Home = (props) => {
         <form className="login-form">
           <input id="username" type="text" placeholder="Username"></input>
           <input id="password" type="password" placeholder="Password"></input>
-          <button onClick={() => props.handleLogin()}>Log in</button>
+          <button onClick={props.handleLogin}>Log in</button>
         </form>
         <p className="message">Not registered?</p>
         <p>  <a onClick={() => props.handleClick('register-page')} href="#">Create a user account</a></p>
