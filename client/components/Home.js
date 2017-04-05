@@ -1,26 +1,27 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const Home = (props) => {
 
-  render() {
-    return (
-      <div className="container">
-        <div className="form" id="login">
-          <form className="login-form">
-            <input id="username" type="text" placeholder="Username"></input>
-            <input id="password" type="password" placeholder="Password"></input>
-            <button onClick={() => this.props.handleClick('login')}>Log in</button>
-          </form>
-          <p className="message">Not registered? <a onClick={() => this.props.handleClick('register-page')} href="#">Create an account</a></p>
-        </div>
+  return (
+    <div className="container">
+      <div className="form" id="login">
+        <form className="login-form">
+          <input id="username" type="text" placeholder="Username"></input>
+          <input id="password" type="password" placeholder="Password"></input>
+          <button onClick={() => props.handleLogin()}>Log in</button>
+        </form>
+        <p className="message">Not registered?</p>
+        <p>  <a onClick={() => props.handleClick('register-page')} href="#">Create a user account</a></p>
+        <p>  <a onClick={() => props.handleClick('register-rest')} href="#">Create a restaurant account</a></p>
       </div>
-    );
-  }
+    </div>
+  );
 
 }
+
+Home.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+};
 
 export default Home;
