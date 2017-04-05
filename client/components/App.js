@@ -34,8 +34,7 @@ class App extends Component {
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(data);
     xhr.onreadystatechange = function() {
-      console.log('RESPONSE RESPONSE' + xhr.responseText);
-      if (xhr.readyState === 4 && xhr.status === 200) {
+      if (xhr.readyState === 4 && (xhr.status === 0 || xhr.status === 200)) {
         console.log('I WANT TO SET THIS STATE');
         this.setState({
           view: 'userInterface',
@@ -43,7 +42,7 @@ class App extends Component {
       } else {
         console.log('Error: ' + xhr.status);
       }
-    };
+    }.bind(this);
   }
 
   handleClick(type) {
@@ -106,11 +105,11 @@ class App extends Component {
           }
         } else {
           console.log('State: ' + this.state.username);
-          console.log('Error: ' + xhr.status); // An error occurred during the request.
+          console.log('ErrorERROR ERRROOROR: ' + xhr.status); // An error occurred during the request.
         }
         }
       }.bind(this);
-    };
+    }
   
   render() {
     let page;
