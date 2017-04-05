@@ -22,6 +22,7 @@ class App extends Component {
     if (type === 'register') xhr.open('POST', '/register');    
     else if (type === 'login') xhr.open('POST', '/login');
     else if (type === 'register-page') return this.setState({ view: 'register' });
+    else if (type === 'login-page') return this.setState({ view: 'login' });
   
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -33,8 +34,6 @@ class App extends Component {
     });
     // console.log('credentials: ', data);
     let xhr = new XMLHttpRequest();
-    
-
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(data);
 

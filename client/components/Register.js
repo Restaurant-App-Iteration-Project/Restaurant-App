@@ -11,7 +11,7 @@ const Register = (props) => {
           <input id="phoneNumber" type="phoneNumber" placeholder="Phone Number"></input>
           <button onClick={() => this.props.handleClick('register')}>Register</button>
         </form>
-        <p className="message">Already registered? <a onClick={() => this.props.handleClick('login')} href="#">Log in</a></p>
+        <p className="message">Already registered? <a onClick={() => this.props.handleClick('login-page')} href="#">Log in</a></p>
       </div>
     </div>
   );
