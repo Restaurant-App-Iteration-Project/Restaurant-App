@@ -18,11 +18,32 @@ class App extends Component {
     super(props);
     this.state = getInitialState();
     this.handleClick = this.handleClick.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleLogin() {
-    // POST REQUEST TO LOGIN ROUTE; IF STATUS CODE 200 THEN RENDER UserInterface
-    // ELSE ERROR MESSAGE
+    const xhr = new XMLHttpRequest();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    console.log(username);
+    const data = JSON.stringify({
+      username,
+      password,
+    });
+    xhr.open('POST', '/login', true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(data);
+    xhr.onreadystatechange = function() {
+      console.log('RESPONSE RESPONSE' + xhr.responseText);
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log('I WANT TO SET THIS STATE');
+        this.setState({
+          view: 'userInterface',
+        });
+      } else {
+        console.log('Error: ' + xhr.status);
+      }
+    };
   }
 
   handleClick(type) {
@@ -63,17 +84,14 @@ class App extends Component {
     }
     // console.log('credentials: ', data);
     
-    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(data);
 
-    xhr.onreadystatechange = function () {
-      var DONE = 4; // readyState 4 means the request is done.
-      var OK = 200; // status 200 is a successful return.
-
+    xhr.onreadystatechange = function() {
+      const DONE = 4; // readyState 4 means the request is done.
+      const OK = 200; // status 200 is a successful return.
       if (xhr.readyState === DONE) {
-        console.log('Ready State', xhr.readyState);
         if (xhr.status === OK) {
-          console.log(username);
           if (this.state.view === 'home') {
             this.setState({
               view: 'userInterface',
@@ -98,7 +116,7 @@ class App extends Component {
   render() {
     let page;
     if (this.state.view === 'home') {
-      page = <Home handleClick={this.handleClick} />
+      page = <Home handleLogin={this.handleLogin} handleClick={this.handleClick} />
     } else if (this.state.view === 'register') {
       page = <Register handleClick={this.handleClick} />
     } else if (this.state.view === 'register-rest') {
