@@ -6,7 +6,9 @@ const List = (props) => {
   props.type.forEach((rest) => {
 
     return (
-      <Restaurant imgUrl={rest.imgUrl} name={rest.name} waitUrl={rest.waitUrl} />
+      <div>
+        <Restaurant imgUrl={rest.imgUrl} name={rest.name} waitUrl={rest.waitUrl} />
+      </div>
     );
   });
 

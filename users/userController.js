@@ -26,6 +26,18 @@ userController.findAll = (req, res, next) => {
   });
 };
 
+userController.verifyUser = (req, res, next) => {
+ User.findOne({username: req.body.username}, (err, user) => {
+      if (err) console.log(err);
+      if (user && bcrypt.compareSync(req.body.password, user.password)) {
+res.redirect('/userInterface');
+} else {
+        //Sends the string 'Error' if the credentials do not match
+        res.send('Error');
+      }
+  });
+};
+
 userController.removeUser = (req, res, next) => {
   User.find({ name: req.body.name }).remove().exec();
   res.status(200).json('Successfully removed user');
