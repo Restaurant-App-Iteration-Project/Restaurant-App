@@ -13,7 +13,6 @@ mongoose.connection.once('open', () => {
 });
 
 app.use(cors());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -21,18 +20,15 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
 });
 
-app.get('/userList', userController.findAll);
+app.get('/userList', userController.getUserList);
+app.post('/register', userController.createUser);
+app.post('/removeUser', userController.removeUser);
 
-app.post('/register', userController.createUser, (req, res) => {
-  console.log('SUCCESS');
-});
-
-app.get('/restaurantList', restController.findAll);
-
+app.get('/restaurantList', restController.getRestList);
+app.get('/restaurant', restController.getRest);
 app.post('/restaurant', restController.createRest);
 app.post('/removeRest', restController.removeRest);
-
-app.post('/removeUser', userController.removeUser);
+app.put('/restaurant', restController.updateTime);
 
 app.use(express.static(path.join(__dirname, './')));
 

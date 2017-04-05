@@ -20,16 +20,31 @@ restController.createRest = (req, res, next) => {
 	});
 };
 
-restController.findAll = (req, res, next) => {
-	Restaurant.find({}, (err, restaurants) => {
-		if (err) {
-			console.log(err);
-			return res.status(400).json("Request was terrible");
-		} else {
-			res.status(200).json(restaurants);
-		}
+restController.getRestList = (req, res, next) => {
+	Restaurant.find({}, (err, result) => {
+		if (err) return res.status(400).json('Sorry, the request was bad.');
+		return res.status(200).json(result);
 	});
 };
+// get req for single restaurant
+restController.getRest = (req, res, next) => {
+	const restaurant = req.body.name;
+	Restaurant.findOne({name: restaurant}, (err, result) => {
+		if (err) return res.status(400).send('restaurant not in database');
+		return res.status(200).json(result);
+	});
+}
+// put request for updating restaurant wait time.
+restController.updateTime = (req, res, next) => {
+	const name = req.body.name;
+	const newTime = req.body.waitTime;
+	const newDate = Date.now();
+
+	Restaurant.findOneAndUpdate({ name: name }, { waitTime: newTime, lastUpdate: newDate }, (err, result) => {
+		if (err) return res.status(400);
+		return res.status(200).json(result);
+	});
+},
 
 restController.removeRest = (req, res, next) => {
   Restaurant.find({ name: req.body.name }).remove().exec();
