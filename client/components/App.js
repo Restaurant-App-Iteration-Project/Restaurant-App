@@ -20,6 +20,11 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  handleLogin() {
+    // POST REQUEST TO LOGIN ROUTE; IF STATUS CODE 200 THEN RENDER UserInterface
+    // ELSE ERROR MESSAGE
+  }
+
   handleClick(type) {
     let xhr = new XMLHttpRequest();
     if (type === 'register') xhr.open('POST', '/register');    

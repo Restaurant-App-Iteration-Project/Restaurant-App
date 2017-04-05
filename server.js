@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/userList', userController.getUserList);
+app.post('/login', userController.verifyUser);
 app.post('/register', userController.createUser);
 app.post('/removeUser', userController.removeUser);
 

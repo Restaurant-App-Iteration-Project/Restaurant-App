@@ -27,14 +27,16 @@ userController.getUserList = (req, res, next) => {
 };
 
 userController.verifyUser = (req, res, next) => {
- User.findOne({username: req.body.username}, (err, user) => {
-      if (err) console.log(err);
-      if (user && bcrypt.compareSync(req.body.password, user.password)) {
-res.redirect('/userInterface');
-} else {
-        //Sends the string 'Error' if the credentials do not match
-        res.send('Error');
-      }
+  User.findOne({username: req.body.username}, (err, user) => {
+    if (err) console.log(err);
+    if (user && bcrypt.compareSync(req.body.password, user.password)) {
+      
+      res.status(200).json(user);
+      return next();
+    } else {
+    //Sends the string 'Error' if the credentials do not match
+      res.status(400);
+    }
   });
 };
 
